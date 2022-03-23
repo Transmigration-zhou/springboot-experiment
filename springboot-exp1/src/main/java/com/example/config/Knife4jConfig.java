@@ -1,4 +1,4 @@
-package com.example.springbootexp1.config;
+package com.example.config;
 
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
