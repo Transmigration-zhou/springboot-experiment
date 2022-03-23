@@ -12,7 +12,7 @@ import java.util.List;
 
 @Api(tags = {"简易设备资产管理接口"})
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
     @Resource
     UserServiceI userService;
@@ -53,16 +53,16 @@ public class UserController {
         else return new Result(100, "false");
     }
 
-    @GetMapping("queryAllUser")
+    @GetMapping("/queryAllUser")
     @ApiOperation(("查看所有用户信息"))
     public Result queryAllUser() {
         List<UserDto> userList = userService.findAll();
         if (userList != null)
-            return new Result(200, "successs", userList);
+            return new Result(200, "success", userList);
         else return new Result(400, "为找到任何用户信息");
     }
 
-    @PostMapping("resetPass")
+    @PostMapping("/resetPass")
     @ApiOperation("重置密码")
     public Result resetPasssword(String loginName, String Resetpass, int id) {
         UserDto user = userService.queryUserById(id);
