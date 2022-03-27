@@ -1,50 +1,42 @@
 package com.example.service.impl;
 
-import com.example.dao.UserRepository;
-import com.example.dto.UserDto;
+import com.example.dao.UserMapper;
+import com.example.pojo.User;
+import com.example.service.UserServiceI;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Service("service")
+@Service
 @Transactional
-public class UserServiceImpl implements com.example.service.UserServiceI {
-    @Resource
-    UserRepository userMapper;
+public class UserServiceImpl implements UserServiceI {
+    @Autowired
+    UserMapper userMapper;
 
     @Override
-    public List<UserDto> findAllByLoginNameAndType(String loginName, Integer type) {
-        List<UserDto> userList = userMapper.findAll();
-        return userList;
+    public List<User> getAllUserList() {
+        return userMapper.getUserList();
     }
 
     @Override
-    public List<UserDto> findAll() {
-        List<UserDto> userList = userMapper.findAll();
-        return userList;
+    public User getUserByName(String login_name) {
+        return userMapper.getUserByName(login_name);
     }
 
     @Override
-    public int delUser(String delUserName, String adminName, int type) {
-        UserDto admin = userMapper.findByLoginName(adminName);
-        int t = 0;
-        if (admin.getType().equals(0)) {
-            t = userMapper.deleteUserByLoginName(delUserName);
-        }
-        return t;
+    public void register(User user) {
+        userMapper.addUser(user);
     }
 
     @Override
-    public UserDto queryUserById(Integer id) {
-        UserDto user = userMapper.findAllById(id);
-        return user;
+    public void addUser(User user) {
+        userMapper.addUser(user);
     }
 
     @Override
-    public UserDto save(UserDto user) {
-        UserDto t = userMapper.save(user);
-        return t;
+    public void resetPassword(Integer id, String password) {
+        userMapper.updatePassword(id,password);
     }
 }

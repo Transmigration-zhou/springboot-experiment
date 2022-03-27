@@ -18,7 +18,7 @@ public class Knife4jConfig {
                 .useDefaultResponseMessages(false)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.springbootexp1.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

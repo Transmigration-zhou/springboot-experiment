@@ -1,17 +1,18 @@
 package com.example.service;
 
-import com.example.dto.UserDto;
+
+import com.example.pojo.User;
 
 import java.util.List;
 
 public interface UserServiceI {
-    List<UserDto> findAllByLoginNameAndType(String loginName, Integer type);
+    List<User> getAllUserList();
 
-    List<UserDto> findAll();
+    User getUserByName(String login_name);
 
-    int delUser(String delUserName, String adminName, int type);
+    void register(User user);
 
-    UserDto queryUserById(Integer id);
+    void addUser(User user);
 
-    UserDto save(UserDto user);
+    void resetPassword(Integer id, String password);
 }
