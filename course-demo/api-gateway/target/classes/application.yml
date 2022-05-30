@@ -1,0 +1,28 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-route
+          uri: lb://service-user
+          order: 1
+          predicates:
+            - Path=/user-serv/**
+          filters:
+            - StripPrefix=1
+        - id: course-route
+          uri: lb://service-course
+          order: 1
+          predicates:
+            - Path=/course-serv/**
+          filters:
+            - StripPrefix=1
